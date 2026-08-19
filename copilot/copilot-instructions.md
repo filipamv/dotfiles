@@ -91,3 +91,21 @@ This is a set of instructions for how I like to work with agents :).
 - Session/scratch notes go outside the repo (e.g. `/workspaces/`) so they
   never land in a diff.
 - Keep a running list of deferred work rather than silently dropping it.
+
+### Local diff reviews
+
+I like to review code in nvim before opening a pull request for a wider 
+audience. When I prompt you, read my review comments by running:
+
+    cat "$(git rev-parse --absolute-git-dir)/diffview-review/latest.md"
+
+Resolve the path that way rather than assuming `.git/`, so it works in
+worktrees.
+
+Comments are numbered C1, C2, ... — refer to them by number when you
+report back. Locate the code by the diff hunk under each comment, not by
+the line number: those are from review time and go stale as soon as
+anything is edited.
+
+Treat each comment as a review comment, not a specification. Push back if
+you think one is wrong, and tell me which ones you didn't act on and why.
