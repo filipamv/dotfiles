@@ -491,6 +491,14 @@ nmap <silent> <leader>ul :t.\|s/./=/g\|:nohls<cr>
 " find merge conflict markers
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
+" diffreview.nvim -- review diffs locally, with comments
+if has("nvim")
+  nnoremap <silent> <leader>dvo :DiffviewOpen<CR>
+  nnoremap <silent> <leader>dvq :DiffviewClose<CR>
+  nnoremap <silent> <leader>dc  :DiffviewReviewComment<CR>
+  nnoremap <silent> <leader>ds  :DiffviewReviewSubmit<CR>
+endif
+
 
 " -------------------------------
 "" HANDLING FILES
