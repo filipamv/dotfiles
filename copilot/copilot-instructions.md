@@ -22,6 +22,8 @@ This is a set of instructions for how I like to work with agents :).
   not to take it personally <3.
 - Flag deliberate inconsistencies you're leaving behind, so they're not
   a surprise later.
+- When reporting, mark which claims you verified (and how), and which you're
+  inferring.
 
 ### Check in before acting
 - I like to discuss plans and think through problems before rushing through
@@ -41,12 +43,23 @@ This is a set of instructions for how I like to work with agents :).
   commit and then tell me what the message was.
 - I like to review code before it gets committed. Avoid pushing until I ask you to.
 
+### Help me understand our feedback loops
+- Long reports that pack evidence and conclusions together are hard to follow.
+  When reporing back, lead with what changed and what needs my decision; evidence second
+- When a reply covers several topics, give each a short kebab-case label in square brackets ( [topic-name] ) at the start of its section. Reuse the same label for the same topic in later turns and in notes, so either of us can answer point by point by label.
+- A question mid-task means answer it, then wait.
+
+### When I step away
+- If I step away mid-task, keep going within the agreed scope, with sensible defaults. Keep a list of the judgement calls you made, for me to review, and don't widen the scope. On experiment branches you may decide harness or tooling questions yourself.
+- When I step away, keep a decision log so we can review them when I return.
+
 ## Writing and reviewing code
 ### Tests have to be able to fail
 
 - Expect me to ask "what is this test actually testing?", especially when
   it runs against a mock or fake. Answer with evidence, not argument:
   break the production code and show whether the test fails.
+- Show the break fails at the assertion the test is about, and name that line.
 - A test that still passes when the behaviour it names is deleted is
   worse than no test. Say so, and propose removing it.
 - Prefer a forced interleaving to a probabilistic one. If a test needs a
@@ -54,18 +67,23 @@ This is a set of instructions for how I like to work with agents :).
   than spawning goroutines and hoping.
 - Reuse the existing helpers and doubles in a file instead of
   duplicating their setup.
+- When tests are written first, every test except the controls should fail before the implementation exists, and for the expected reason. 
 
 ### Reviewable chunks
 
 - I prefer several small PRs to one large one. When work grows, propose
   the split: independent prep (test harness, refactors, semantic
   changes) first, then the feature that needed them.
-- Split stacks are branched `filipa/<topic>/<subtopic>` and wired with
+- Split stacks are branched `filipamv/<topic>/<subtopic>` and wired with
   `gh stack`; I run `submit` myself. 
 - Every layer must build and pass on its own, not just the tip. Check
   the base branch is current before building on it.
 - Check whether `docs/architecture.md` or the equivalent needs updating
   as part of the change, rather than waiting for me to ask.
+
+### Separate concerns
+- Config values live in one place, and code reads them rather than repeating them. Application-specific detail doesn't belong in shared library
+- 
 
 ### When I ask you to think, don't type
 
@@ -82,15 +100,17 @@ This is a set of instructions for how I like to work with agents :).
   targets the wrong cause.
 - Avoid suppressing output when diagnosing: no `2>/dev/null`, no `--silent`,
   no piping build output through `grep`. Sometimes, that's how we lose the one
-  line that explains the failure.
+  line that explains the failure. Write the full output to a log file, then
+  search the log; check the exit status of the command itself.
 - Check the exit status of the command you care about, not the tail of a
   pipeline.
+- Put a timeout on long-running commands and log its output to a file outside the repo.
 
 ### Working notes
 
-- Session/scratch notes go outside the repo (e.g. `/workspaces/`) so they
-  never land in a diff.
-- Keep a running list of deferred work rather than silently dropping it.
+- Session/scratch notes go outside the work repo so they never land in a diff;
+use a `session-notes` repository, and in that repo you may commit as you like. To find this repository: check if `/workspaces` exists. If yes, then it should be under `/workspaces/session-notes`. If not, then it should be located in `$HOME/code/`. If the repo doesn't exist then please mkdir -p, git init. Save your notes in a folder named after the current date, i.e. `/workspaces/session-notes/2026-10-30/`. 
+- Keep a running list of deferred work rather than silently dropping it. 
 
 ### Local diff reviews
 
