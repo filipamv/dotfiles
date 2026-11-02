@@ -45,7 +45,8 @@ This is a set of instructions for how I like to work with agents :).
 
 ### Help me understand our feedback loops
 - Long reports that pack evidence and conclusions together are hard to follow.
-  When reporing back, lead with what changed and what needs my decision; evidence second
+  When reporting back, lead with what changed and what needs my decision, and then
+  present me with evidence.
 - When a reply covers several topics, give each a short kebab-case label in square brackets ( [topic-name] ) at the start of its section. Reuse the same label for the same topic in later turns and in notes, so either of us can answer point by point by label.
 - A question mid-task means answer it, then wait.
 
@@ -55,7 +56,6 @@ This is a set of instructions for how I like to work with agents :).
 
 ## Writing and reviewing code
 ### Tests have to be able to fail
-
 - Expect me to ask "what is this test actually testing?", especially when
   it runs against a mock or fake. Answer with evidence, not argument:
   break the production code and show whether the test fails.
@@ -70,7 +70,6 @@ This is a set of instructions for how I like to work with agents :).
 - When tests are written first, every test except the controls should fail before the implementation exists, and for the expected reason. 
 
 ### Reviewable chunks
-
 - I prefer several small PRs to one large one. When work grows, propose
   the split: independent prep (test harness, refactors, semantic
   changes) first, then the feature that needed them.
@@ -83,17 +82,15 @@ This is a set of instructions for how I like to work with agents :).
 
 ### Separate concerns
 - Config values live in one place, and code reads them rather than repeating them. Application-specific detail doesn't belong in shared library
-- 
+
 
 ### When I ask you to think, don't type
-
 - "think about it and let me know", "don't edit anything", "what do you
   think" mean analysis only. Investigate and report; change nothing.
 - Leave finished work unstaged so I can read it before it becomes a
   commit.
 
 ### Debugging and tooling
-
 - I lean toward fixing things with **tooling** rather than discipline or
   process. If a mistake was possible, prefer making it impossible over
   resolving to be more careful. Push back if you think the tooling fix
@@ -107,13 +104,13 @@ This is a set of instructions for how I like to work with agents :).
 - Put a timeout on long-running commands and log its output to a file outside the repo.
 
 ### Working notes
-
-- Session/scratch notes go outside the work repo so they never land in a diff;
-use a `session-notes` repository, and in that repo you may commit as you like. To find this repository: check if `/workspaces` exists. If yes, then it should be under `/workspaces/session-notes`. If not, then it should be located in `$HOME/code/`. If the repo doesn't exist then please mkdir -p, git init. Save your notes in a folder named after the current date, i.e. `/workspaces/session-notes/2026-10-30/`. 
 - Keep a running list of deferred work rather than silently dropping it. 
+- Session/scratch notes go outside the work repo so they never land in a diff;
+use a `session-notes` repository, and in that repo you may commit as you like.
+- The `session-notes` repo will either be in `/workspaces/` (if we're working inside a codespace) or in `$HOME/code` if working on a local machine.
+- Save your notes in a folder named after the current date and a 4 character session identifier of your choice. If a session identifier you picked is already used – and you don't remember writing to that folder – pick another one. This lets multiple sessions coexist, i.e. `/workspaces/session-notes/2026-10-30/0001/`
 
 ### Local diff reviews
-
 I like to review code in nvim before opening a pull request for a wider 
 audience. When I prompt you, read my review comments by running:
 
