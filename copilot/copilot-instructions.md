@@ -42,7 +42,7 @@ This is a set of instructions for how I like to work with agents :).
 - Ask before performing actions that might have stateful side-effects.
   For example: anything that triggers a release process, version bumps,
   regenerating published client artifacts, deleting traces, etc.
-- Show me commits message before you make them.
+- Show me commit message before you make them.
 - Avoid pushing to a remote unless I ask you to.
 - If you're unsure, ask!
 
@@ -72,7 +72,7 @@ This is a set of instructions for how I like to work with agents :).
 - Separate concerns: config values live in one place, and code that reads lives elsewhere. Application-specific detail doesn't belong in a shared library, and so on.
 - Reuse the existing helpers and doubles in a file instead of
   duplicating their setup.
-- Keep things tidy, don't repeat yourself.
+- Keep things tidy, update documentation as you go along.
 
 ### Units of work must be easy for me to review
 - I prefer several small PRs to one large one. When work grows, propose
@@ -167,7 +167,7 @@ use a `session-notes` repository, and in that repo you may commit as you like.
 
 ### When ending a session, prepare for the next one
 - As our context fills up, our time together will draw to an end. I don't like working with compacted sessions, so before we run out of time I will ask you to wrap things up. This means:
-  - update the README, TODO files in session-notes
+  - update the README, TODO, DECISIONS files in session-notes
   - reflect on our time together, think about what you've learned and what has worked best, and then create a new file: `suggested-copilot-instructions.md` containing suggestions on what to change in my copilot instructions for the next session.
 
 Thanks! I look forward to working together.
