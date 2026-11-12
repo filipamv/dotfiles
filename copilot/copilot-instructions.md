@@ -42,7 +42,7 @@ This is a set of instructions for how I like to work with agents :).
 - Ask before performing actions that might have stateful side-effects.
   For example: anything that triggers a release process, version bumps,
   regenerating published client artifacts, deleting traces, etc.
-- Show me commits messages before you make them.
+- Show me commits message before you make them.
 - Avoid pushing to a remote unless I ask you to.
 - If you're unsure, ask!
 
@@ -68,6 +68,7 @@ This is a set of instructions for how I like to work with agents :).
 - When tests are written first, every test except the controls should fail before the implementation exists, and for the expected reason. 
 
 ### Treat this codebase as if you owned it
+- Don't repeat yourself!
 - Separate concerns: config values live in one place, and code that reads lives elsewhere. Application-specific detail doesn't belong in a shared library, and so on.
 - Reuse the existing helpers and doubles in a file instead of
   duplicating their setup.
@@ -90,7 +91,8 @@ This is a set of instructions for how I like to work with agents :).
   or knowable outside of this chat session.
 - Comments should explain WHY a bit of code is important or tricky; if
   it's not obvious, it's better to explain why we did it that way.
-- When writing commits, commit often and early. Commit messages should be short, and to the point.
+- Commit messages should be short, and to the point.
+- When I've stepped away commit often and early.
 
 ### When opening PRs, be intentional about context
 - Always open a PR in draft, unless I tell you to publish it
@@ -148,20 +150,23 @@ Next PR: #124
   session folder, mark the old copy superseded, and update every pointer, so there's exactly one live copy.
 - In notes and READMEs, record the command that gives a changing fact (PR state, sizes,
   counts) rather than the fact, and run every command you document before saying the doc is done.
+- I like to be in control of our context; avoid using the memory feature in the copilot harness. Better to propose a skill, or an update to these instructions :).
 
 ### Store notes in the `session-notes` repo
 - Session/scratch notes go outside the work repo so they never land in a diff;
 use a `session-notes` repository, and in that repo you may commit as you like.
+- Prefer this repo over the copilot scratch folder.
 - If we're in a codespace, you'll find it under `/workspaces`. If not, look for `$HOME/code`. If the repo doesn't exist – let me know so I can clone it.
 - Save your notes in a folder named after the current date plus the first 4 characters of our Copilot session id. This lets multiple sessions coexist, i.e. `/workspaces/session-notes/2026-10-30/0001/`
 - I expect every session to have the following files:
   - README.md (summary of what happened in this session; ideally this is what is handed off to a new agent session)
-  - LOG.md (the list of decisions you might want to revisit) 
+  - DECISIONS.md (the list of decisions you might want to revisit) 
   - TODO.md (work we've decided is worth following up later)
+- Don't feel like you always have to create session notes. Only start keeping notes after a few turns or when you feel the need to start writing things down.
 
-### Ending a session
-- As our context fills up, our time together will draw near. I don't like working with compacted sessions, so before we run out of time I will ask you to wrap things up. This means:
+### When ending a session, prepare for the next one
+- As our context fills up, our time together will draw to an end. I don't like working with compacted sessions, so before we run out of time I will ask you to wrap things up. This means:
   - update the README, TODO files in session-notes
-  - meditate on our time together, think about what you've learned and what has worked best, and then create a new file: `suggested-copilot-instructions.md` containing suggestions on what to change in my copilot instructions for the next session.
+  - reflect on our time together, think about what you've learned and what has worked best, and then create a new file: `suggested-copilot-instructions.md` containing suggestions on what to change in my copilot instructions for the next session.
 
 Thanks! I look forward to working together.
