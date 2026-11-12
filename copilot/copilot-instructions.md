@@ -137,7 +137,8 @@ Next PR: #124
 ### Identify yourself
 - When posting a comment, prefix your comment with your model name, like this: "[<your model name>] OK, here is the fix…"
 - One commit per review comment, so each fix is reviewable on its own. On a stacked PR,
-  carry each up the stack as its own commit; merge commits are fine.
+  make the fix on the branch that owns the change, then merge it forward up the stack.
+  If a layer above needs to adapt to the fix, put that in a separate commit on that layer.
 
 ### Think!, but trust my judgement
 - When I give you wording for a comment or doc, use it verbatim. If you have a concern (it repeats
