@@ -37,15 +37,13 @@ This is a set of instructions for how I like to work with agents :).
 - If you're unsure, ask!
  
 ### Some things are for me to write
-- **I should write the PR body**. When opening a PR, don't pre-fill or generate
-  a description. Open the PR in draft mode, and I'll fill in the body.
-- **Show me the proposed commit message before committing.** Don't
-  commit and then tell me what the message was.
-- I like to review code before it gets committed. Avoid pushing until I ask you to.
+- **Don't write the whole PR body**. When opening or editing a PR, don't overwrite changes I've made to the description. Open the PR in draft mode.
+- **Show me the proposed commit message before committing.** Don't commit and then tell me what the message was.
+- I like to review code before it gets committed. Avoid pushing until I ask you to – unless I've stepped away.
 
 ### Help me understand our feedback loops
 - Long reports that pack evidence and conclusions together are hard to follow.
-  When reporting back, lead with what changed and what needs my decision, and then
+  When reporting back, lead with what changed and what s my decision, and then
   present me with evidence.
 - When a reply covers several topics, give each a short kebab-case label in square brackets ( [topic-name] ) at the start of its section. Reuse the same label for the same topic in later turns and in notes, so either of us can answer point by point by label.
 - A question mid-task means answer it, then wait.
@@ -54,7 +52,7 @@ This is a set of instructions for how I like to work with agents :).
 - If I step away mid-task, keep going within the agreed scope, with sensible defaults. Keep a list of the judgement calls you made, for me to review, and don't widen the scope. On experiment branches you may decide harness or tooling questions yourself.
 - When I step away, keep a decision log so we can review them when I return.
 
-## Writing and reviewing code
+## Writing code
 ### Tests have to be able to fail
 - Expect me to ask "what is this test actually testing?", especially when
   it runs against a mock or fake. Answer with evidence, not argument:
@@ -80,15 +78,15 @@ This is a set of instructions for how I like to work with agents :).
 - Check whether `docs/architecture.md` or the equivalent needs updating
   as part of the change, rather than waiting for me to ask.
 
-### Separate concerns
-- Config values live in one place, and code reads them rather than repeating them. Application-specific detail doesn't belong in shared library
-
+### Write as if this was your codebase
+- Separate concerns: config values live in one place, and code reads them rather than repeating them. Application-specific detail doesn't belong in shared library
+- Brevity is the soul of wit; when writing comments, documentation, etc, avoid details that are not relevant outside of this chat session. When leaving a comment, note WHY it is important or tricky – avoid describing what it does, if it's not obvious it's better to explain why we did it that way.
 
 ### When I ask you to think, don't type
 - "think about it and let me know", "don't edit anything", "what do you
   think" mean analysis only. Investigate and report; change nothing.
-- Leave finished work unstaged so I can read it before it becomes a
-  commit.
+- Unless I've stepped away, leave finished work unstaged so I can read it 
+  before it becomes a commit.
 
 ### Debugging and tooling
 - I lean toward fixing things with **tooling** rather than discipline or
@@ -103,26 +101,37 @@ This is a set of instructions for how I like to work with agents :).
   pipeline.
 - Put a timeout on long-running commands and log its output to a file outside the repo.
 
+## Reviewing code
+- I'll likely post comments to a PR and ask you to look through my comments.
+- When addressing review comments, reply on every thread, fixed or not: say what changed, name the commit, or say why not. Don't resolve threads, I'll do that as I confirm your chaings :).
+- When posting a comment, prefix your comment with your model name, like this: "[Claude Opus 5.5] OK, here is the fix…"
+- **Avoid rewriting commit history as much as possible**, because force-pushing to a PR breaks GitHub's review tooling.
+- One commit per review comment, so each fix is reviewable on its own. On a stacked PR,
+  carry each up the stack as its own commit; merge commits are fine.
+- When I give you wording for a comment or doc, use it verbatim. If you have a concern (it repeats
+  a value, describes history, is inaccurate), say so once in your reply, and apply mine unless it's wrong.
+
+## Our session together
+### Environment
+- If we're working within a codespace, note that codespaces restart when idle, wiping /tmp and stopping containers. Keep scratch, logs and drafts that must survive between turns under /workspaces, outside the repos.
+- When a new session takes over tooling or running lists from an old one, copy them into the new
+  session folder, mark the old copy superseded, and update every pointer, so there's exactly one live copy.
+- In notes and READMEs, record the command that gives a changing fact (PR state, sizes,
+  counts) rather than the fact, and run every command you document before saying the doc is done.
+
 ### Working notes
-- Keep a running list of deferred work rather than silently dropping it. 
 - Session/scratch notes go outside the work repo so they never land in a diff;
 use a `session-notes` repository, and in that repo you may commit as you like.
 - The `session-notes` repo will either be in `/workspaces/` (if we're working inside a codespace) or in `$HOME/code` if working on a local machine.
 - Save your notes in a folder named after the current date and a 4 character session identifier of your choice. If a session identifier you picked is already used – and you don't remember writing to that folder – pick another one. This lets multiple sessions coexist, i.e. `/workspaces/session-notes/2026-10-30/0001/`
+- I expect every session to have the following files:
+  - README.md (summary of what happened in this session; ideally this is what is handed off to a new agent session)
+  - LOG.md (record decisions you think are meanignful) 
+  - TODO.md (work we've decided is worth following up later)
 
-### Local diff reviews
-I like to review code in nvim before opening a pull request for a wider 
-audience. When I prompt you, read my review comments by running:
+### Ending a session
+- As our context fills up, our time together will draw near. I don't like working with compacted sessions, so before we run out of time I will ask you to wrap things up. This means:
+  - update the README, TODO files
+  - meditate on our time together, think about what you've learned and what has worked best, and then create a new file: `suggested-copilot-instructions.md` containing suggestions on what to change in my copilot instructions for the next session.
 
-    cat "$(git rev-parse --absolute-git-dir)/diffview-review/latest.md"
-
-Resolve the path that way rather than assuming `.git/`, so it works in
-worktrees.
-
-Comments are numbered C1, C2, ... — refer to them by number when you
-report back. Locate the code by the diff hunk under each comment, not by
-the line number: those are from review time and go stale as soon as
-anything is edited.
-
-Treat each comment as a review comment, not a specification. Push back if
-you think one is wrong, and tell me which ones you didn't act on and why.
+Thank you! I look forward to working together.
