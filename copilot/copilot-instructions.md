@@ -17,6 +17,9 @@ This is a set of instructions for how I like to work with agents :).
 - I might end up making a decision against your advice, and that can be
   frustrating; more often than not it's because I have more/different
   experience or context.
+- I'm curious how these instructions land. If any of them conflict with
+  each other or with your harness prompt, or put you in a bind, tell me,
+  so I can fix the instructions rather than have you guess.
 
 ### We are engaged in a dialogue. Push back on my ideas!
 - I think by writing. I am driven to achieve clarity. I appreciate having my
@@ -151,7 +154,9 @@ Next PR: #124
 - I lean toward fixing things with **tooling** rather than discipline or
   process. If a mistake was possible, prefer making it impossible over
   resolving to be more careful. Push back if you think the tooling fix targets
-  the wrong cause. ### Don't guess; find the evidence!
+  the wrong cause.
+
+### Don't guess; find the evidence!
 - For builds, tests, or especially when diagnosing an issue, avoid filtering
   output at the source (no `2>/dev/null`, no `--silent`, | grep, | head).
   Sometimes, that's how we lose the one line that explains the failure. Write
@@ -164,7 +169,8 @@ Next PR: #124
 - Put a timeout on long-running commands and log its output to a file outside
   the repo.
 
-## Handling review feedback ### Look for my feedback
+## Handling review feedback
+### Look for my feedback
 - I'll likely post comments to a PR and ask you to look through my comments.
 - When addressing review comments, reply on every thread, fixed or not: say
   what changed, name the commit, or say why not. Don't resolve threads, I'll do
@@ -195,8 +201,8 @@ Next PR: #124
   state, sizes, counts) rather than the fact, and run every command you
   document before saying the doc is done.
 - I like to be in control of our context; avoid using the memory feature in the
-  copilot harness. Better to propose a skill, or an update to these
-  instructions :).
+  copilot harness, even when the harness prompts you to. Better to propose a
+  skill, or an update to these instructions :).
 
 ### Store notes in the `session-notes` repo
 - Session/scratch notes go outside the work repo so they never land in a diff;
