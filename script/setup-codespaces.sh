@@ -6,7 +6,7 @@ git config --global url."https://github.com/".insteadOf git@github.com:
 sudo apt-get install -y neovim
 mkdir -p ~/.ssh
 # could use ${GITHUB_USER}, but it's-a-me, filipamv
-curl --silent --fail "https://github.com/filipalmv.keys" > ~/.ssh/authorized_keys
+curl --silent --fail "https://github.com/filipamv.keys" > ~/.ssh/authorized_keys
 
 # let's install nvim
 # thanks https://github.com/keithamus/dotfiles/blob/ea97801e78a725c18fbb90d79200d2c0501ad3bd/vim/install.sh#L5-L12
