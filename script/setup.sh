@@ -23,10 +23,8 @@ if command -v gh > /dev/null; then
   gh extension install https://github.com/github/gh-stack
 fi
 
-if command -v vim > /dev/null; then
-  vim +'PlugInstall' +qa;
-fi
-
 if command -v nvim > /dev/null; then
   nvim --headless +PlugInstall +qa
+elif command -v vim > /dev/null; then
+  vim -E -s +PlugInstall +qa
 fi
