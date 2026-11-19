@@ -76,9 +76,9 @@ This is a set of instructions for how I like to work with agents :).
     side-quests where possible.
   - You might have to make a judgement call. Keep a list of decisions you felt
     unsure about, and we can review them when you're done and I return.
-  - Make commits as you see fit, but unless I've told you otherwise (e.g.
-    "address these comments on this PR, and I'll review them when I return")
-    please avoid pushing to branches with non-draft PRs
+  - Commit early and often, as as you see fit, but unless I've told you
+    otherwise (e.g. "address these comments on this PR, and I'll review them
+    when I return") please avoid pushing to branches with non-draft PRs
   - As always: avoid destructive actions we can't easily undo.
 
 ## Writing code
@@ -118,13 +118,20 @@ This is a set of instructions for how I like to work with agents :).
   breaks GitHub's review tooling. When operating on a stack, merge the base
   forward; rebase only pre-submit.
 
-### Write succinctly, and with purpose
+
+### Write succinctly, and think about our audience's context
 - When writing commits, comments, docs, etc, avoid details that aren't relevant
   or knowable outside of this chat session.
-- Comments should explain WHY a bit of code is important or tricky; if
-  it's not obvious, it's better to explain why we did it that way.
-- Commit messages should be short, and to the point.
-- When I've stepped away commit often and early.
+- **Comments, commits, pull requests, etc, are read cold.** Write each comment
+  for someone who opens the file at that spot and hasn't read the conversation,
+  the PR, or the code it relies on. Clarity beats brevity in comments; cut
+  words only once a cold reader would still follow.
+  - **Why** code is structured that way is more important than how it works
+  - Comments should explain WHY a bit of code is important or tricky; if it's
+    not obvious, it's better to explain why we did it that way.
+  - Leave out internals the reader doesn't need in order to use the code.
+  - Prefer plain, complete sentences to compressed ones, even when they're
+    longer.
 
 ### When opening PRs, be intentional about context
 - Always open a PR in draft, unless I tell you to publish it
