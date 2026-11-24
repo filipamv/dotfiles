@@ -13,6 +13,10 @@ ln -s $(pwd)/.config/nvim  $HOME/.config
 
 mkdir -p $HOME/.copilot
 ln -sf $(pwd)/copilot/copilot-instructions.md $HOME/.copilot/copilot-instructions.md
+
+mkdir -p $HOME/.pi/agent
+ln -sf $(pwd)/AGENTS.md $HOME/.pi/agent/AGENTS.md
+
 #ln -s $(pwd)/emacs $HOME/.emacs
 #ln -s $(pwd)/screenrc $HOME/.screenrc
 
